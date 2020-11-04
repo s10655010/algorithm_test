@@ -1,0 +1,92 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled5.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyNbvHYPBxShijxBFzr6HBt1",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/s10655010/algorithm_test/blob/master/%E7%B5%82%E6%A5%B5%E5%AF%86%E7%A2%BC%20%E6%B2%B3%E5%85%A7%E5%A1%94%2011/4\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DRUOUjMpF7uG"
+      },
+      "source": [
+        "#終極密碼\n",
+        "from random import randint\n",
+        "\n",
+        "#規定範圍並產生密碼\n",
+        "lowest = 1\n",
+        "highest = 100\n",
+        "answer = randint(lowest, highest)\n",
+        "\n",
+        "#重複猜數字，直到猜對為止\n",
+        "while True:\n",
+        "    guess = input('密碼介於 ' + str(lowest) + '-' + str(highest) + ':\\n>>')\n",
+        "    \n",
+        "    #檢查輸入的內容是否為數字\n",
+        "    try:\n",
+        "        guess = int(guess)  #把字串轉換成整數\n",
+        "    except ValueError:  #轉換失敗便要求重新輸入數字\n",
+        "        print('格式錯誤，請輸入數字\\n')\n",
+        "        continue\n",
+        "    \n",
+        "    #檢查輸入的數字是否介於規定範圍內\n",
+        "    if guess <= lowest or guess >= highest:\n",
+        "        print('請輸入 ' + str(lowest) + '-' + str(highest) + ' 之間的整數\\n')\n",
+        "        continue\n",
+        "    \n",
+        "    #判斷有沒有猜中密碼\n",
+        "    if guess == answer:\n",
+        "        print('答對了！')\n",
+        "        break   #猜對才跳脫迴圈\n",
+        "    elif guess < answer:\n",
+        "        lowest = guess\n",
+        "    else:\n",
+        "        highest = guess\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "JmQJARFELAfM"
+      },
+      "source": [
+        "#河內塔\n",
+        "def hanoi(n, A, B, C):\n",
+        "    if n == 1:\n",
+        "        print(str(n) + \"號圈：\" + A + \"→\" + C)\n",
+        "    else:\n",
+        "        hanoi(n-1, A, C, B)\n",
+        "        print(str(n) + \"號圈：\" + A + \"→\" + C)\n",
+        "        hanoi(n-1, B, A, C)\n",
+        "\n",
+        "ringNum = int(input(\"請輸入圈圈數：\"))\n",
+        "hanoi(ringNum, \"A\", \"B\", \"C\")\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
