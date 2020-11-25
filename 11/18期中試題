@@ -1,0 +1,124 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled6.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyPHSm6DRSzCe+7gOqkIUD28",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/s10655010/algorithm_test/blob/master/11/18%E6%9C%9F%E4%B8%AD%E8%A9%A6%E9%A1%8C\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 131
+        },
+        "id": "l6OPvdw1zPnW",
+        "outputId": "00b21dd7-f476-4e93-c089-ef99fa637fd4"
+      },
+      "source": [
+        "import random\n",
+        "\n",
+        "sort_list = [9999999]\n",
+        "\n",
+        "# selection_sort.py\n",
+        "def selection_sort(arr):\n",
+        "count = len(arr)     \n",
+        "for i in range(count-1):  # 交換 n-1 次\n",
+        "min = i\n",
+        "\n",
+        "\n",
+        "\n",
+        "for i in range(8):\n",
+        "\n",
+        "    number = random.randint(10,99)\n",
+        "\n",
+        "    # 找最大數\n",
+        "    for j in range(i, count):\n",
+        "    if arr[min] > arr[j]:\n",
+        "    min = j\n",
+        "    arr[min], arr[i] = arr[i], arr[min]  # 交換\n",
+        "    return arr\n",
+        "  \n",
+        "    \n",
+        "\n",
+        "\n",
+        "del sort_list[0]\n",
+        "\n",
+        "print(sort_list)\n"
+      ],
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "IndentationError",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-15-6461cfbfca37>\"\u001b[0;36m, line \u001b[0;32m7\u001b[0m\n\u001b[0;31m    count = len(arr)\u001b[0m\n\u001b[0m        ^\u001b[0m\n\u001b[0;31mIndentationError\u001b[0m\u001b[0;31m:\u001b[0m expected an indented block\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 131
+        },
+        "id": "kN0WplPY6oZC",
+        "outputId": "e6d9754b-fd39-4802-f6e7-bd2c2b4aeccf"
+      },
+      "source": [
+        "import random;\n",
+        "unsortData = random.sample(range(10), 99)\n",
+        "\n",
+        "def insertion_sort(lst):\n",
+        "    if len(lst) == 1:\n",
+        "        return lst\n",
+        "\n",
+        "    for i in range(1, len(lst)):\n",
+        "        temp = lst[i]\n",
+        "        j = i - 1\n",
+        "        while j >= 0 and temp < lst[j]:\n",
+        "            lst[j + 1] = lst[j]\n",
+        "            j -= 1\n",
+        "        lst[j + 1] = temp\n",
+        "    return lst\n",
+        "\n",
+        "print \"Original Data:\", unsortData\n",
+        "sortData = insertion_sort(unsortData);\n",
+        "print \"Sorted Data:\", sortData"
+      ],
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-16-a0f2874aa974>\"\u001b[0;36m, line \u001b[0;32m17\u001b[0m\n\u001b[0;31m    print \"Original Data:\", unsortData\u001b[0m\n\u001b[0m                         ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m Missing parentheses in call to 'print'. Did you mean print(\"Original Data:\", unsortData)?\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
