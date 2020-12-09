@@ -1,0 +1,54 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled10.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyNMK3j/sQbXjW5zPWOPGI97",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/s10655010/algorithm_test/blob/master/1209%20%20dp\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "V9wKrH0dcCus"
+      },
+      "source": [
+        "#  自頂向下遞迴演算法實現\r\n",
+        "#  R[n] = max{1≤i≤n, (pi+R[n-i])}          時間複雜度為：2^n(指數函式)\r\n",
+        "def CutRod(p, n):  # 函式返回：切割長度為 n 的鋼條所得的最大收益\r\n",
+        "    if n == 0:\r\n",
+        "        return 0\r\n",
+        "    q = -1\r\n",
+        "    for i in range(1, n+1):\r\n",
+        "        q = max(q, p[i] + CutRod(p, n-i))\r\n",
+        "        '''\r\n",
+        "        tmp = p[i] + CutRod(p, n-i)\r\n",
+        "        if q < tmp:\r\n",
+        "            q = tmp\r\n",
+        "        '''\r\n",
+        "    return q\r\n",
+        "p=[0,1,5,8,9,10,17,17,20,24,30]   # 價格表，下標為對應的鋼條長度，如當鋼條長度為0時，p=0,即p[0]=0，p[2]=5\r\n",
+        "print(\"最大收益為：\",CutRod(p,4))  #  最大收益為： 10"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
