@@ -1,0 +1,106 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled11.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyMT1eAiXrSNj/02aooeUk1C",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/s10655010/algorithm_test/blob/master/2020/12/30\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "f1iUuEawlXd1",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "6bece279-bc19-471a-e330-850fa2f66aba"
+      },
+      "source": [
+        "def enqueue(a, o):\r\n",
+        "    a.insert(0, o)\r\n",
+        "\r\n",
+        "def dequeue(a):\r\n",
+        "    return a.pop()\r\n",
+        "\r\n",
+        "g = { #  graph: 被搜尋的網路\r\n",
+        "    '6': {'n':['5','4'], 'v':0}, #  n: neighbor (鄰居), v: visited (是否被訪問過)\r\n",
+        "    '5': {'n':['1','2'], 'v':0},\r\n",
+        "    '1': {'n':['2','3','4'], 'v':0},\r\n",
+        "    '2': {'n':['4','3'], 'v':0},\r\n",
+        "    '4': {'n':['3'], 'v':0},\r\n",
+        "    '3': {'n':[], 'v':0}\r\n",
+        "}\r\n",
+        "\r\n",
+        "def init(g): #  初始化、設定 visited 為 0\r\n",
+        "    for i in g:\r\n",
+        "        g[i]['v'] = 0\r\n",
+        "\r\n",
+        "def dfs(g, node): #  深度優先搜尋\r\n",
+        "    if g[node]['v']!=0:           #  如果已訪問過，就不再訪問\r\n",
+        "        return\r\n",
+        "    print(node, '=> ', end = '')  #  否則、印出節點\r\n",
+        "    g[node]['v'] = 1              #    並設定為已訪問\r\n",
+        "    neighbors = g[node]['n']      # 取出鄰居節點\r\n",
+        "    for n in neighbors:           #  對於每個鄰居\r\n",
+        "        dfs(g, n)                 #    逐一進行訪問\r\n",
+        "\r\n",
+        "queue=['6'] #  BFS 用的 queue, 起始點為 6。\r\n",
+        "\r\n",
+        "def bfs(g, q): #  廣度優先搜尋\r\n",
+        "    if len(q)==0:                 #  如果 queue 已空，則返回。\r\n",
+        "        return\r\n",
+        "    node = dequeue(q)             #  否則、取出 queue 的第一個節點。\r\n",
+        "    if g[node]['v'] == 0:         #  如果該節點尚未拜訪過。\r\n",
+        "        g[node]['v'] = 1          #    標示為已拜訪\r\n",
+        "    else:                         #  否則 (已訪問過)\r\n",
+        "        return                    #    不繼續搜尋，直接返回。\r\n",
+        "    print(node, '=> ', end = '')  #  印出節點\r\n",
+        "    neighbors = g[node]['n']      #  取出鄰居。\r\n",
+        "    for n in neighbors: #  對於每個鄰居\r\n",
+        "        if not g[n]['v']:         #  假如該鄰居還沒被拜訪過\r\n",
+        "            enqueue(q, n)         #    就放入 queue 中\r\n",
+        "    bfs(g, q)\r\n",
+        "\r\n",
+        "print('dfs:', end = '')\r\n",
+        "init(g)\r\n",
+        "dfs(g, '1') # 呼叫深度優先搜尋。\r\n",
+        "print('')\r\n",
+        "\r\n",
+        "print('bfs:', end = '')\r\n",
+        "init(g)\r\n",
+        "bfs(g, queue) # 呼叫廣度優先搜尋。\r\n",
+        "print('')\r\n"
+      ],
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "dfs:1 => 2 => 4 => 3 => \n",
+            "bfs:6 => 5 => 4 => 1 => 2 => 3 => \n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
